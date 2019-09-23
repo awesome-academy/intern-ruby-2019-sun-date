@@ -108,6 +108,8 @@ User.create!(
     },
     images_attributes: [
       {link: Rails.root.join("app/assets/images/img_7.jpg").open},
+      {link: Rails.root.join("app/assets/images/img_2.jpg").open},
+      {link: Rails.root.join("app/assets/images/img_3.jpg").open}
     ]
   )
 end
@@ -137,6 +139,14 @@ end
 end
 
 (10..20).each do |n|
+  Reaction.create!(
+    active_user_id: n,
+    passive_user_id: 2,
+    status: :like
+  )
+end
+
+(21..30).each do |n|
   Reaction.create!(
     active_user_id: n,
     passive_user_id: 2,

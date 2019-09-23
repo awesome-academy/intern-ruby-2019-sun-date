@@ -26,14 +26,6 @@ class User < ApplicationRecord
   foreign_key: "passive_user_id", dependent: :destroy
   has_many :reacters, through: :passive_reactions, source: :active_user
 
-  has_many :active_notifications, class_name: Notification.name,
-  foreign_key: "owner_id", dependent: :destroy
-  has_many :recipients, through: :active_notifications, source: :recipient
-
-  has_many :passive_notifications, class_name: Notification.name,
-  foreign_key: "recipient_id", dependent: :destroy
-  has_many :owners, through: :passive_notifications, source: :owner
-
   has_one :dating_information, dependent: :destroy
   accepts_nested_attributes_for :dating_information, update_only: true
 
