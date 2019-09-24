@@ -11,6 +11,7 @@ class DatingInformationsController < ApplicationController
       flash[:success] = t "dating.flash.success"
       redirect_to edit_dating_criterias_path
     else
+      @list_gender = prefer_gender_list.tap(&:pop)
       flash[:danger] = t "dating.flash.error"
       render :new
     end
