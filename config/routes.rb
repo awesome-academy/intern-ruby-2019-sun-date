@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
+  
+  get "room_chat/index"
   root "static_pages#home"
   mount ActionCable.server => "/cable"
 
