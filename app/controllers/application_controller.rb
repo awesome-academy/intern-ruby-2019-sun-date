@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :load_notifications, if: :user_signed_in?
+  before_action :load_newmessages, if: :user_signed_in?
 
   def set_locale
     set_param_locale params[:locale] if params[:locale].present?
@@ -25,6 +26,11 @@ class ApplicationController < ActionController::Base
 
     flash[:notice] = t "flash.require_set"
     redirect_to after_signup_path :set_dating_profile
+  end
+
+  def load_newmessages
+    conversationService = ConversationService.new
+    @newmessages = conversationService.unSeen current_user.id
   end
 
   protected
